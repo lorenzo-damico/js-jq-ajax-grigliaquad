@@ -11,6 +11,10 @@ $(document).ready(function () {
   $(".box").click(
     function () {
 
+      // Salvo in una variabile il box cliccato.
+      var boxCliccato = this;
+      console.log(boxCliccato);
+
       // Utilizzo il metodo AJAX con Jquery per effettuare la chiamata al server e prendere un numero random da 1 a 9.
       $.ajax(
         {
@@ -19,7 +23,22 @@ $(document).ready(function () {
           "success": function (data, stato) {
             console.log(data);
             console.log(stato);
-            console.log(data["response"]);
+
+            // Salvo in una variabile il numero random richiamato.
+            var numeroRandom = data.response;
+            console.log(numeroRandom);
+
+            // Stampo il numeroRandom nel box.
+            $(boxCliccato).text(numeroRandom);
+
+            // Se il numeroRandom è minore o uguale a 5, aggiungo la classe yellow.
+            if (numeroRandom <= 5) {
+              $(boxCliccato).removeClass("green");
+              $(boxCliccato).addClass("yellow");
+            } else {
+              $(boxCliccato).removeClass("yellow");
+              $(boxCliccato).addClass("green");
+            }
           },
           "error": function (richiesta, stato, errori) {
             console.log(richiesta);
