@@ -4,14 +4,11 @@
 
 $(document).ready(function () {
 
-  var source = $("#box-template").html();
-  var template = Handlebars.compile(source);
-
-  var context = {};
-  var html = template(context);
+  // Genero una griglia di box 6x6.
+  var boxTemplate = '<div class="box"></div>';
 
   for (var i = 0; i < 36; i++) {
-    $(".container").append(html);
+    $(".container").append(boxTemplate);
   }
 
   // Scrivo la funzione che dato un certo box e un oggetto richiamato dal server, scrive il numero nel box e colora il box.
