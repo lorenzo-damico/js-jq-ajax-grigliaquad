@@ -4,6 +4,26 @@
 
 $(document).ready(function () {
 
+  // Scrivo la funzione che dato un certo box e un oggetto richiamato dal server, scrive il numero nel box e colora il box.
+  function grigliaQuad (box, object) {
+
+    // Salvo in una variabile il numero random richiamato.
+    var numeroRandom = object.response;
+    console.log(numeroRandom);
+
+    // Stampo il numeroRandom nel box.
+    $(box).text(numeroRandom);
+
+    // Se il numeroRandom è minore o uguale a 5, aggiungo la classe yellow.
+    if (numeroRandom <= 5) {
+      $(box).removeClass("green");
+      $(box).addClass("yellow");
+    } else {
+      $(box).removeClass("yellow");
+      $(box).addClass("green");
+    }
+  }
+
   // Definiamo l'endpoint da richiamare per ottenere i numeri random da 1 a 9.
   var endpoint = "https://flynn.boolean.careers/exercises/api/random/int"
 
@@ -24,21 +44,9 @@ $(document).ready(function () {
             console.log(data);
             console.log(stato);
 
-            // Salvo in una variabile il numero random richiamato.
-            var numeroRandom = data.response;
-            console.log(numeroRandom);
+            // Applico la funzione creata, passando come argomenti il box cliccato e l'oggetto data richiamato dal server.
+            grigliaQuad(boxCliccato, data);
 
-            // Stampo il numeroRandom nel box.
-            $(boxCliccato).text(numeroRandom);
-
-            // Se il numeroRandom è minore o uguale a 5, aggiungo la classe yellow.
-            if (numeroRandom <= 5) {
-              $(boxCliccato).removeClass("green");
-              $(boxCliccato).addClass("yellow");
-            } else {
-              $(boxCliccato).removeClass("yellow");
-              $(boxCliccato).addClass("green");
-            }
           },
           "error": function (richiesta, stato, errori) {
             console.log(richiesta);
