@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: calc(100vh - 20px);
+  margin: 10px auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box {
+  background-color: grey;
+  width: calc((100vh - 20px) / 6);
+  height: calc((100vh - 20px) / 6);
+  line-height: calc((100vh - 20px) / 6);
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  border: 1px solid black;
+  cursor: pointer;
+}
