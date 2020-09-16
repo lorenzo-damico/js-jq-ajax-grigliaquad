@@ -4,6 +4,16 @@
 
 $(document).ready(function () {
 
+  var source = $("#box-template").html();
+  var template = Handlebars.compile(source);
+
+  var context = {};
+  var html = template(context);
+
+  for (var i = 0; i < 36; i++) {
+    $(".container").append(html);
+  }
+
   // Scrivo la funzione che dato un certo box e un oggetto richiamato dal server, scrive il numero nel box e colora il box.
   function grigliaQuad (box, object) {
 
